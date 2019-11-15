@@ -5,6 +5,9 @@ import (
 	"os"
 )
 
+// Tests splitting of file
+//
+// Takes file and print splits of offset and length
 func TestSplit(source string) error {
 	source_file, openErr := os.Open(source)
 
@@ -27,7 +30,10 @@ func TestSplit(source string) error {
 	return nil
 }
 
-func ScatterGather(source, dest string) error {
+// Test for proper splitting and gathering back of file. At the end, the file is copied
+//
+// This takes the source file path and the destination path
+func TestScatterGather(source, dest string) error {
 	sourceOpen, sourceErr := os.Open(source)
 	destOpen, destErr := os.OpenFile(dest, os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0644)
 
