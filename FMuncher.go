@@ -22,7 +22,7 @@ const BLKSIZE int64 = (128 * 1024) * 1024
 
 type munch struct {
 	sourceFile *os.File
-	MaxSplit   int64
+	maxSplit   int64
 	FileInfo   syscall.Stat_t
 }
 
@@ -31,7 +31,8 @@ type Splits struct {
 	Len int64
 }
 
-// Constructor of file processor
+// FMuncher takes file pointer and manipulate as you like
+//
 // Accepts *os.File of file opened for reading
 func Munch(file *os.File) *munch {
 	fmuncher := &munch{}
@@ -45,7 +46,7 @@ func Munch(file *os.File) *munch {
 	fmuncher.FileInfo = FileInfo
 	
 	// Calculate number of splits based on the blksize
-	fmuncher.MaxSplit = int64(math.Ceil(float64(FileInfo.Size) / float64(BLKSIZE)))
+	fmuncher.maxSplit = int64(math.Ceil(float64(FileInfo.Size) / float64(BLKSIZE)))
 	return fmuncher
 }
 
@@ -70,7 +71,7 @@ func (fmuncher munch) Split() ([]Splits, error) {
 	var seekErr error
 
 	// Loop through number of splits
-	for ; i < fmuncher.MaxSplit; i++ {
+	for ; i < fmuncher.maxSplit; i++ {
 		var split = Splits{}
 		blksize := BLKSIZE
 
