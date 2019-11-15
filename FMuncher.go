@@ -32,8 +32,8 @@ type Splits struct {
 }
 
 // FMuncher takes file pointer and manipulate as you like
+//
 // Accepts *os.File of file opened for reading
-//	muncher := fmuncher.Munch( filePointer )
 func Munch(file *os.File) *munch {
 	fmuncher := &munch{}
 
@@ -52,8 +52,6 @@ func Munch(file *os.File) *munch {
 
 // Splits a file into parts of Splits{}
 // Returns array of Splits{} and error if unable to seek file position
-//	muncher := fmuncher.Munch( filePointer )
-//	splits, err := muncher.Split()
 func (fmuncher munch) Split() ([]Splits, error) {
 	size := fmuncher.FileInfo.Size
 	var splits []Splits
