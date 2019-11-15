@@ -8,7 +8,7 @@ Using `go get`
     $ go get github.com/donjajo/fmuncher
 ```
 ## Usage
-    ```go
+    ```
         file, fileErr := os.Open(filename)
         if fileErr != nil {
             log.Fatal(fileErr)
