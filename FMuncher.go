@@ -45,7 +45,7 @@ func Munch(file *os.File) *munch {
 	fmuncher.FileInfo = FileInfo
 	
 	// Calculate number of splits based on the blksize
-	proc.MaxSplit = int64(math.Ceil(float64(FileInfo.Size) / float64(BLKSIZE)))
+	fmuncher.MaxSplit = int64(math.Ceil(float64(FileInfo.Size) / float64(BLKSIZE)))
 	return fmuncher
 }
 
